@@ -16,7 +16,7 @@
 <body>
   <div id="app">
     <el-container>
-      <el-header>
+      <el-header><span>{{headerInfo}}</span><p>
         <audio ref="audio" :src="audioUrl" controls="controls" preload="auto" autoplay="autoplay" style="width: 100%">
         </audio>
       </el-header>
@@ -41,6 +41,7 @@
 </body>
 <script>
   var data = {
+    headerInfo: '正在播放: ',
     audioUrl: '简爱_01.mp3',
     pageSize: 10, //每页多少条
     currentPage: 1,
@@ -232,6 +233,7 @@
       openDetails(row) {
           this.$refs.singleTable.setCurrentRow(row);
           this.$refs.audio.pause()
+          this.headerInfo = '正在播放: ['+ row.name +"]..."
           this.audioUrl = row.name + '.mp3'
           this.$refs.audio.play()
         },
