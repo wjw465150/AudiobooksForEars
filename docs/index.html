@@ -1,320 +1,250 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>耳朵爱听书</title>
-    <!-- import CSS -->
-    <link rel="stylesheet" href="js/element-ui/lib/theme-chalk/index.css">
-    <!-- import Vue before Element -->
-    <script src="js/element-ui/vue.min.js"></script>
-    <!-- import JavaScript -->
-    <script src="js/element-ui/lib/index.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>耳朵爱听书</title>
+  <!-- import CSS -->
+  <link rel="stylesheet" href="js/element-ui/lib/theme-chalk/index.css">
+  <!-- import Vue before Element -->
+  <script src="js/element-ui/vue.min.js"></script>
+  <!-- import JavaScript -->
+  <script src="js/element-ui/lib/index.js"></script>
 
 </head>
+
 <body>
-<div id="app">
-<el-container>
-  <el-header>
-    <audio ref="audio" :src="audioUrl" controls="controls" preload="auto" autoplay="autoplay" style="width: 100%">
-  </audio>  
-  </el-header>
-  <el-main>
-    <el-table highlight-current-row ref="singleTable"
-              :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" @row-click="openDetails"
-              style="width: 100%">
-        <el-table-column
-                prop="id"
-                label="ID"
-                width="180">
-        </el-table-column>
-        <el-table-column
-                prop="name"
-                label="章节">
-        </el-table-column>
-    </el-table>
-    <el-pagination background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[5, 10]"
-            :page-size="pageSize"
-            :pager-count="3"
-            layout="total, prev, pager, next, jumper"
-            :total="tableData.length"
-            style="float:right;margin-top:15px;"
-    ></el-pagination>
-</el-main>
-</el-container>
-</div>
+  <div id="app">
+    <el-container>
+      <el-header>
+        <audio ref="audio" :src="audioUrl" controls="controls" preload="auto" autoplay="autoplay" style="width: 100%">
+        </audio>
+      </el-header>
+      <el-main>
+        <el-table highlight-current-row ref="singleTable" 
+          :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" 
+          @row-click="openDetails" style="width: 100%">
+          <el-table-column prop="id" label="ID" width="180">
+          </el-table-column>
+          <el-table-column prop="name" label="章节">
+          </el-table-column>
+        </el-table>
+        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" 
+        :current-page="currentPage" :page-sizes="[5, 10]" :page-size="pageSize" :pager-count="3" 
+        layout="total, prev, pager, next, jumper"
+        :total="tableData.length" style="float:right;margin-top:15px;"></el-pagination>
+      </el-main>
+    </el-container>
+  </div>
 
 
 </body>
 <script>
-    new Vue({
-        el: '#app',
-        data: {
-            audioUrl: '简爱_01.mp3',
-            pageSize: 10, //每页多少条
-            currentPage: 1,
-            tableData: [
-                {
-                    id: '01',
-                    name: '简爱_01'
-                },
-                {
-                    id: '02',
-                    name: '简爱_02'
-                },
-                {
-                    id: '03',
-                    name: '简爱_03'
-                },
-                {
-                    id: '04',
-                    name: '简爱_04'
-                },
-                {
-                    id: '05',
-                    name: '简爱_05'
-                },
-                {
-                    id: '06',
-                    name: '简爱_06'
-                },
-                {
-                    id: '07',
-                    name: '简爱_07'
-                },
-                {
-                    id: '08',
-                    name: '简爱_08'
-                },
-                {
-                    id: '09',
-                    name: '简爱_09'
-                },
-                {
-                    id: '10',
-                    name: '简爱_10'
-                },
-                {
-                    id: '11',
-                    name: '简爱_11'
-                },
-                {
-                    id: '12',
-                    name: '简爱_12'
-                },
-                {
-                    id: '13',
-                    name: '简爱_13'
-                },
-                {
-                    id: '14',
-                    name: '简爱_14'
-                },
-                {
-                    id: '15',
-                    name: '简爱_15'
-                },
-                {
-                    id: '16',
-                    name: '简爱_16'
-                },
-                {
-                    id: '17',
-                    name: '简爱_17'
-                },
-                {
-                    id: '18',
-                    name: '简爱_18'
-                },
-                {
-                    id: '19',
-                    name: '简爱_19'
-                },
-                {
-                    id: '20',
-                    name: '简爱_20'
-                },
-                {
-                    id: '21',
-                    name: '简爱_21'
-                },
-                {
-                    id: '22',
-                    name: '简爱_22'
-                },
-                {
-                    id: '23',
-                    name: '简爱_23'
-                },
-                {
-                    id: '24',
-                    name: '简爱_24'
-                },
-                {
-                    id: '25',
-                    name: '简爱_25'
-                },
-                {
-                    id: '26',
-                    name: '简爱_26'
-                },
-                {
-                    id: '27',
-                    name: '简爱_27'
-                },
-                {
-                    id: '28',
-                    name: '简爱_28'
-                },
-                {
-                    id: '29',
-                    name: '简爱_29'
-                },
-                {
-                    id: '30',
-                    name: '简爱_30'
-                },
-                {
-                    id: '31',
-                    name: '简爱_31'
-                },
-                {
-                    id: '32',
-                    name: '简爱_32'
-                },
-                {
-                    id: '33',
-                    name: '简爱_33'
-                },
-                {
-                    id: '34',
-                    name: '简爱_34'
-                },
-                {
-                    id: '35',
-                    name: '简爱_35'
-                },
-                {
-                    id: '36',
-                    name: '简爱_36'
-                },
-                {
-                    id: '37',
-                    name: '简爱_37'
-                },
-                {
-                    id: '38',
-                    name: '简爱_38'
-                },
-                {
-                    id: '39',
-                    name: '简爱_39'
-                },
-                {
-                    id: '40',
-                    name: '简爱_40'
-                },
-                {
-                    id: '41',
-                    name: '简爱_41'
-                },
-                {
-                    id: '42',
-                    name: '简爱_42'
-                },
-                {
-                    id: '43',
-                    name: '简爱_43'
-                },
-                {
-                    id: '44',
-                    name: '简爱_44'
-                },
-                {
-                    id: '45',
-                    name: '简爱_45'
-                },
-                {
-                    id: '46',
-                    name: '简爱_46'
-                },
-                {
-                    id: '47',
-                    name: '简爱_47'
-                },
-                {
-                    id: '48',
-                    name: '简爱_48'
-                },
-                {
-                    id: '49',
-                    name: '简爱_49'
-                },
-                {
-                    id: '50',
-                    name: '简爱_50'
-                },
-                {
-                    id: '51',
-                    name: '简爱_51'
-                },
-                {
-                    id: '52',
-                    name: '简爱_52'
-                },
-                {
-                    id: '53',
-                    name: '简爱_53'
-                },
-                {
-                    id: '54',
-                    name: '简爱_54'
-                },
-                {
-                    id: '55',
-                    name: '简爱_55'
-                },
-                {
-                    id: '56',
-                    name: '简爱_56'
-                },
-                {
-                    id: '57',
-                    name: '简爱_57'
-                },
-                {
-                    id: '58',
-                    name: '简爱_58'
-                },
-                {
-                    id: '59',
-                    name: '简爱_59'
-                }
+  var data = {
+    audioUrl: '简爱_01.mp3',
+    pageSize: 10, //每页多少条
+    currentPage: 1,
+    tableData: [{
+        id: '01',
+        name: '简爱_01'
+      }, {
+        id: '02',
+        name: '简爱_02'
+      }, {
+        id: '03',
+        name: '简爱_03'
+      }, {
+        id: '04',
+        name: '简爱_04'
+      }, {
+        id: '05',
+        name: '简爱_05'
+      }, {
+        id: '06',
+        name: '简爱_06'
+      }, {
+        id: '07',
+        name: '简爱_07'
+      }, {
+        id: '08',
+        name: '简爱_08'
+      }, {
+        id: '09',
+        name: '简爱_09'
+      }, {
+        id: '10',
+        name: '简爱_10'
+      }, {
+        id: '11',
+        name: '简爱_11'
+      }, {
+        id: '12',
+        name: '简爱_12'
+      }, {
+        id: '13',
+        name: '简爱_13'
+      }, {
+        id: '14',
+        name: '简爱_14'
+      }, {
+        id: '15',
+        name: '简爱_15'
+      }, {
+        id: '16',
+        name: '简爱_16'
+      }, {
+        id: '17',
+        name: '简爱_17'
+      }, {
+        id: '18',
+        name: '简爱_18'
+      }, {
+        id: '19',
+        name: '简爱_19'
+      }, {
+        id: '20',
+        name: '简爱_20'
+      }, {
+        id: '21',
+        name: '简爱_21'
+      }, {
+        id: '22',
+        name: '简爱_22'
+      }, {
+        id: '23',
+        name: '简爱_23'
+      }, {
+        id: '24',
+        name: '简爱_24'
+      }, {
+        id: '25',
+        name: '简爱_25'
+      }, {
+        id: '26',
+        name: '简爱_26'
+      }, {
+        id: '27',
+        name: '简爱_27'
+      }, {
+        id: '28',
+        name: '简爱_28'
+      }, {
+        id: '29',
+        name: '简爱_29'
+      }, {
+        id: '30',
+        name: '简爱_30'
+      }, {
+        id: '31',
+        name: '简爱_31'
+      }, {
+        id: '32',
+        name: '简爱_32'
+      }, {
+        id: '33',
+        name: '简爱_33'
+      }, {
+        id: '34',
+        name: '简爱_34'
+      }, {
+        id: '35',
+        name: '简爱_35'
+      }, {
+        id: '36',
+        name: '简爱_36'
+      }, {
+        id: '37',
+        name: '简爱_37'
+      }, {
+        id: '38',
+        name: '简爱_38'
+      }, {
+        id: '39',
+        name: '简爱_39'
+      }, {
+        id: '40',
+        name: '简爱_40'
+      }, {
+        id: '41',
+        name: '简爱_41'
+      }, {
+        id: '42',
+        name: '简爱_42'
+      }, {
+        id: '43',
+        name: '简爱_43'
+      }, {
+        id: '44',
+        name: '简爱_44'
+      }, {
+        id: '45',
+        name: '简爱_45'
+      }, {
+        id: '46',
+        name: '简爱_46'
+      }, {
+        id: '47',
+        name: '简爱_47'
+      }, {
+        id: '48',
+        name: '简爱_48'
+      }, {
+        id: '49',
+        name: '简爱_49'
+      }, {
+        id: '50',
+        name: '简爱_50'
+      }, {
+        id: '51',
+        name: '简爱_51'
+      }, {
+        id: '52',
+        name: '简爱_52'
+      }, {
+        id: '53',
+        name: '简爱_53'
+      }, {
+        id: '54',
+        name: '简爱_54'
+      }, {
+        id: '55',
+        name: '简爱_55'
+      }, {
+        id: '56',
+        name: '简爱_56'
+      }, {
+        id: '57',
+        name: '简爱_57'
+      }, {
+        id: '58',
+        name: '简爱_58'
+      }, {
+        id: '59',
+        name: '简爱_59'
+      }
 
-            ]
+    ]
+  }
+  new Vue({
+    el: '#app',
+    data: data,
+    methods: {
+      openDetails(row) {
+          this.$refs.singleTable.setCurrentRow(row);
+          this.$refs.audio.pause()
+          this.audioUrl = row.name + '.mp3'
+          this.$refs.audio.play()
         },
-        methods: {
-            openDetails(row) {
-                this.$refs.singleTable.setCurrentRow(row);
-                this.$refs.audio.pause()
-                this.audioUrl = row.name + '.mp3'
-                this.$refs.audio.play()
-            },
-            // 每页多少条
-            handleSizeChange(val) {
-                this.pageSize = val;
-            },
-            // 当前页
-            handleCurrentChange(val) {
-                this.currentPage = val;
-            },
-        }
-    })
+        // 每页多少条
+        handleSizeChange(val) {
+          this.pageSize = val;
+        },
+        // 当前页
+        handleCurrentChange(val) {
+          this.currentPage = val;
+        },
+    }
+  })
 </script>
 
 </html>
