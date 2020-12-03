@@ -28,13 +28,14 @@
                 label="章节">
         </el-table-column>
     </el-table>
-    <el-pagination
+    <el-pagination background
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage"
             :page-sizes="[5, 10]"
             :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
+            :pager-count="3"
+            layout="total, prev, pager, next, jumper"
             :total="tableData.length"
             style="float:right;margin-top:15px;"
     ></el-pagination>
@@ -44,7 +45,7 @@
     new Vue({
         el: '#app',
         data: {
-            pageSize: 5, //每页多少条
+            pageSize: 10, //每页多少条
             currentPage: 1,
             tableData: [
                 {
