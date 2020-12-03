@@ -15,6 +15,12 @@
 </head>
 <body>
 <div id="app">
+<el-container>
+  <el-header>
+    <audio ref="audio" :src="audioUrl" controls="controls" preload="auto" autoplay="autoplay" style="width: 100%">
+  </audio>  
+  </el-header>
+  <el-main>
     <el-table highlight-current-row ref="singleTable"
               :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" @row-click="openDetails"
               style="width: 100%">
@@ -39,12 +45,17 @@
             :total="tableData.length"
             style="float:right;margin-top:15px;"
     ></el-pagination>
+</el-main>
+</el-container>
 </div>
+
+
 </body>
 <script>
     new Vue({
         el: '#app',
         data: {
+            audioUrl: '简爱_01.mp3',
             pageSize: 10, //每页多少条
             currentPage: 1,
             tableData: [
@@ -290,11 +301,9 @@
         methods: {
             openDetails(row) {
                 this.$refs.singleTable.setCurrentRow(row);
-                //this.$router.push({path: row.name+'.mp3'}) 
-                location.href = row.name + '.mp3'
-                //window.open(row.name+'.mp3')
-                //this.gamemuiscs1 = new Audio(row.name+'.mp3');
-                //this.gamemuiscs1.play();
+                this.$refs.audio.pause()
+                this.audioUrl = row.name + '.mp3'
+                this.$refs.audio.play()
             },
             // 每页多少条
             handleSizeChange(val) {
