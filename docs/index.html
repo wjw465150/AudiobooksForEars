@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -16,54 +17,56 @@
 <body>
   <div id="app">
     <el-container>
-      <el-header><div style="text-align: center">{{headerInfo}}</div>
+      <el-header>
+        <div style="text-align: center">{{headerInfo}}</div>
         <audio ref="audio" :src="audioUrl" controls="controls" preload="auto" autoplay="autoplay" style="width: 100%">
         </audio>
       </el-header>
       <el-main>
-        <el-table highlight-current-row ref="singleTable" 
-          :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" 
-          @row-click="openDetails" style="width: 100%">
+        <el-table highlight-current-row ref="singleTable" :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" @row-click="openDetails" style="width: 100%">
           <el-table-column prop="id" label="ID" width="180">
           </el-table-column>
           <el-table-column prop="name" label="章节">
           </el-table-column>
         </el-table>
-        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" 
-        :current-page="currentPage" :page-sizes="[5, 10]" :page-size="pageSize" :pager-count="3" 
-        layout="total, prev, pager, next, jumper"
+        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[5, 10]" :page-size="pageSize" :pager-count="3" layout="total, prev, pager, next, jumper"
         :total="tableData.length" style="float:right;margin-top:15px;"></el-pagination>
       </el-main>
     </el-container>
   </div>
-
-
 </body>
+
 <script>
-  var data = {
-    headerInfo: '',
-    audioUrl: '简爱_00.mp3',
-    pageSize: 10, //每页多少条
-    currentPage: 1,
-    tableData: []
-  }
-  
-  for (var i=1; i<60; i++) {
-    if(i<10) {
-      data.tableData.push({id: '0'+i, name: '简爱_0'+i})
-    } else {
-      data.tableData.push({id: ''+i, name: '简爱_'+i})
-    }
-  }
-  
   new Vue({
     el: '#app',
-    data: data,
+    data: {
+      headerInfo: '',
+      audioUrl: '00.mp3',
+      pageSize: 10, //每页多少条
+      currentPage: 1,
+      tableData: []
+    },
+    created: function() {
+      // `this` 指向 vm 实例
+      for (var i = 1; i < 60; i++) {
+        if (i < 10) {
+          this.tableData.push({
+            id: '0' + i,
+            name: '简爱_0' + i
+          })
+        } else {
+          this.tableData.push({
+            id: '' + i,
+            name: '简爱_' + i
+          })
+        }
+      }
+    },
     methods: {
       openDetails(row) {
           this.$refs.singleTable.setCurrentRow(row);
           this.$refs.audio.pause()
-          this.headerInfo = '正在播放: ['+ row.name +"]..."
+          this.headerInfo = '正在播放: [' + row.name + "]..."
           this.audioUrl = row.name + '.mp3'
           this.$refs.audio.play()
         },
